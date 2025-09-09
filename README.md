@@ -63,7 +63,7 @@ The notebook requires the gbk file of the sequence/construct to be analysed. Out
 - Graph displaying scores for predicted splice sites
 - Possible transcripts based on predicted splicing sites (only use this for input sequences which start from a transcription initiation site)
 
-When preparing the `gbk` file (in Benchling), keep annotations very simple. Make sure to use the following annotation types: (exon, intron, gene, UTR, promoter, terminator). Using these will produce a much cleaner and neat graph.
+When preparing the `gbk` file (in Benchling), keep annotations very simple. Make sure to use the following annotation types: (exon, intron, gene, UTR, promoter, terminator). Using these will produce a much cleaner and neat graph. Bear in mind that the label that will be used is whatever you type in the Name cell.
 
 ```python
 # Assign group
