@@ -63,7 +63,8 @@ The notebook requires the gbk file of the sequence/construct to be analysed. Out
 - Graph displaying scores for predicted splice sites
 - Possible transcripts based on predicted splicing sites (only use this for input sequences which start from a transcription initiation site)
 
-When preparing the `gbk` file (in Benchling), keep annotations very simple. Make sure to use the following annotation types: (exon, intron, gene, UTR, promoter, terminator). Using these will produce a much cleaner and neat graph. Bear in mind that the label that will be used is whatever you type in the Name cell.
+When preparing the `gbk` file (in Benchling), keep annotations very simple. Make sure to use the following annotation types: (`exon`, `intron`, `gene`, `UTR`, `promoter`, `terminator`). Using these will produce a much cleaner and neat graph. 
+Bear in mind that the label that will be used is whatever you type in the `Name` cell. The `Annotation type` value will just be used to group the features in the graph.
 
 ```python
 # Assign group
@@ -73,7 +74,10 @@ elif feature.type in ["promoter", "terminator"]:
   group = "regulatory"
 ```
 
-If you need to add anything else, in the annotation type cell in Benchling type `misc_feature`. If you want to display these in the graph, set the `show_misc_features` variable to `True`, on top of the cell that generates the graph.
+If you need to add anything else, in the annotation type cell in Benchling type `misc_feature`. If you want to display these in the graph, set the `show_misc_features` variable to `True`, on top of the cell that generates the graph. The `Color` you use will also be displayed.
+
+<img width="310" height="196" alt="image" src="https://github.com/user-attachments/assets/2c471557-4425-4e03-a157-9896e421bdb8" />
+
 
 ```python
 from Bio import SeqIO
