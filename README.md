@@ -1,5 +1,5 @@
 # Anopheles-OpenSpliceAI
-Jupyter notebook for easy use of OpenSpliceAI model trained with A. gambiae Ifakara reference genome
+Jupyter notebook for accessible use of OpenSpliceAI model trained with A. gambiae Ifakara reference genome. The notebook is designed to take a `gbk` file (easily exported from Benchling) from where the sequence and annotations are extracted for prediction and plotting of splice donor and acceptor sites.
 
 This repository contains a Jupyter notebook (`11_access_openspliceAI.ipynb`) along with a Conda environment file (`environment.yml`) to reproduce the analysis, as well as the pretrained model required for the prediction of splice sites (`model_best.pt`)
 
