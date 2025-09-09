@@ -43,7 +43,7 @@ Navigate to `11_access_openspliceAI.ipynb` and open it.
 You can now run all cells in the notebook.
 If you are familiar with it, using software like Visual Studio is much easier for the use of notebooks like this one.
 
-## **4. Launch Jupyter Notebook**
+## **4. Predict and plot splice sites**
 
 Once inside the notebook, the only cell you need to change is the first one, to specify the input files and output directories.
 
