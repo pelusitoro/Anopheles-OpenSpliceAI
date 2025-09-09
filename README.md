@@ -46,6 +46,7 @@ If you are familiar with it, using software like Visual Studio is much easier fo
 ## **4. Predict and plot splice sites**
 
 Once inside the notebook, the only cell you need to change is the first one, to specify the input files and output directories.
+Make sure you set the notebook kernel to the conda environment you have created with the required packages.
 
 ```python
 from Bio import SeqIO
