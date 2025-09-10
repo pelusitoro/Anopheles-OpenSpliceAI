@@ -95,4 +95,5 @@ rect_height = 0.2
 track_spacing = 0.5
 ```
 
+Once you set up all the parameters in the first cell, you can run the the entire notebook in one go to produce the results. You can also run every cell individually.
 If you have any questions, let me know :)
