@@ -46,10 +46,12 @@ For the latest version, you can:
 -Download the macOS installer from the Git website. 
 -Or use Homebrew:
 
+```bash
 brew install git
 ``` :contentReference[oaicite:4]{index=4}
+```
 
-**Linux(Debian/Ubuntu & Fedora)**
+**Linux**
 
 Debian/Ubuntu:
 
