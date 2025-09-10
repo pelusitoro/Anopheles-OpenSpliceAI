@@ -19,7 +19,7 @@ conda --version
 ```
 
 ## **2. Create a conda environment**
-From the project directory, clone the repository, and navigate to the repository folder:
+From your project directory, clone this repository, and navigate to the repository folder:
 
 ```bash
 git clone https://github.com/pelusitoro/Anopheles-OpenSpliceAI.git
