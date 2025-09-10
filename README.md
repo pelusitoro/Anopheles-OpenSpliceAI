@@ -18,7 +18,7 @@ If you don’t already have Conda installed, follow these steps:
 conda --version
 ```
 
-## **2. Create the conda environment**
+## **2. Create a conda environment**
 From the project directory, clone the repository, and navigate to the repository folder:
 
 ```bash
