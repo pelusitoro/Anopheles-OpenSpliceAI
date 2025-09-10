@@ -5,7 +5,7 @@ This repository contains a Jupyter notebook (`11_access_openspliceAI.ipynb`) alo
 
 ---
 
-## **1. Install Conda**
+## **1. Install Conda and git (if not already done)**
 
 If you don’t already have Conda installed, follow these steps:
 
@@ -16,6 +16,54 @@ If you don’t already have Conda installed, follow these steps:
 
 ```bash
 conda --version
+```
+
+### **Git**
+
+Windows
+
+Download the latest Git installer from the official Git website (git-scm.com/download/win) — the download will start automatically. 
+
+Run the downloaded .exe file and follow the setup wizard.
+
+TIP: When prompted, select “Git from the command line and also from 3rd-party software” to ensure Git is added to your system’s PATH. 
+
+After installation, verify it's working by opening Command Prompt or Git Bash and running:
+
+```bash
+git --version
+```
+
+macOS
+
+Git may already be installed via Xcode Command Line Tools. Simply run:
+
+git --version
+
+If it's not installed, you’ll be prompted to install it. 
+For the latest version, you can:
+
+-Download the macOS installer from the Git website. 
+-Or use Homebrew:
+
+brew install git
+``` :contentReference[oaicite:4]{index=4}
+
+Linux (Debian/Ubuntu & Fedora)
+
+Debian/Ubuntu:
+
+```bash
+sudo apt-get update
+sudo apt-get install git-all
+git --version
+```
+
+Fedora:
+
+```bash
+sudo dnf install git-all
+git --version
 ```
 
 ## **2. Create a conda environment**
