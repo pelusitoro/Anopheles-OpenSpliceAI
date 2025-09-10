@@ -20,7 +20,7 @@ conda --version
 
 ### **Git**
 
-Windows
+**Windows**
 
 Download the latest Git installer from the official Git website (git-scm.com/download/win) — the download will start automatically. 
 
@@ -34,7 +34,7 @@ After installation, verify it's working by opening Command Prompt or Git Bash an
 git --version
 ```
 
-macOS
+**macOS**
 
 Git may already be installed via Xcode Command Line Tools. Simply run:
 
@@ -49,7 +49,7 @@ For the latest version, you can:
 brew install git
 ``` :contentReference[oaicite:4]{index=4}
 
-Linux (Debian/Ubuntu & Fedora)
+**Linux(Debian/Ubuntu & Fedora)**
 
 Debian/Ubuntu:
 
