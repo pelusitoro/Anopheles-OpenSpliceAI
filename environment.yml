@@ -15,7 +15,6 @@ dependencies:
   - scikit-learn
   - biopython
   - h5py
-  - pysam
   - gffutils
   - pip
   - ipykernel
@@ -26,3 +25,4 @@ dependencies:
       - torch==2.7.1
       - torchaudio==2.7.1
       - torchvision==0.22.1
+      - pysam==0.23.3
