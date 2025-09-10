@@ -76,6 +76,7 @@ git clone https://github.com/pelusitoro/Anopheles-OpenSpliceAI.git
 cd Anopheles-OpenSpliceAI
 ```
 
+Alternatively you can also download the repository as a zip folder by clicking the `>Code` green button
 Create a conda environment with all the packages needed to run the notebook, included in the `.yml` file
 
 ```bash
