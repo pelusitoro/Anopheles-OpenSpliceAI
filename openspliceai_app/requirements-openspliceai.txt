@@ -1,0 +1,21 @@
+# Portable package pins based on the installed `openspliceai` Conda environment
+# (macOS, Python 3.10). Native libraries and Python itself are managed by Conda.
+openspliceai==0.0.4
+torch==2.7.1
+torchaudio==2.7.1
+torchvision==0.22.1
+
+# Prediction, GenBank parsing, and plotting dependencies
+numpy==2.2.6
+scipy==1.15.2
+pandas==2.3.3
+matplotlib==3.10.8
+biopython==1.86
+h5py==3.15.1
+gffutils==0.13
+pyfaidx==0.9.0.3
+pysam==0.23.3
+scikit-learn==1.7.2
+
+# App dependencies
+streamlit==1.65.0

@@ -3,6 +3,14 @@ Jupyter notebook for accessible use of OpenSpliceAI model trained with A. gambia
 
 This repository contains a Jupyter notebook (`11_access_openspliceAI.ipynb`) along with a Conda environment file (`environment.yml`) to reproduce the analysis, as well as the pretrained model required for the prediction of splice sites (`model_best.pt`)
 
+## Graphical app (recommended for lab use)
+
+The `openspliceai_app/` folder contains a no-code interface for uploading a GenBank file, running the trained model, plotting splice-site predictions with feature annotations, and downloading the plot and BED results.
+
+Start with the [app setup guide](openspliceai_app/README.md). It includes beginner-friendly installation and launch steps for macOS and Windows (using WSL2). The app runs locally on the user's computer, and the trained `model_best.pt` file is included in this repository.
+
+The app is intended to make the workflow easier without replacing the notebook. The notebook instructions below are retained for users who prefer that workflow.
+
 ---
 
 ## **1. Install Conda and git (if not already done)**
