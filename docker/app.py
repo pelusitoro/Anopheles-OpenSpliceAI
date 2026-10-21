@@ -65,6 +65,9 @@ def read_bed(path: Path):
     return results
 
 
+SPLICE_SITE_COLORS = {"donor": "#2563EB", "acceptor": "#F2C94C"}
+
+
 def add_splice_features(record, bed_path: Path, site_type: str, threshold: float) -> int:
     """Append above-threshold splice sites as one-base GenBank misc_features.
 
@@ -84,7 +87,8 @@ def add_splice_features(record, bed_path: Path, site_type: str, threshold: float
                 continue
             if score <= threshold or site_position < 0 or site_position >= len(record.seq):
                 continue
-            strand = {"+": 1, "-": -1}.get(row[5]) if len(row) > 5 else None
+            strand = 1 if site_type == "donor" else -1
+            feature_color = SPLICE_SITE_COLORS[site_type]
             record.features.append(SeqFeature(
                 FeatureLocation(site_position, site_position + 1, strand=strand),
                 type="misc_feature",
@@ -92,6 +96,8 @@ def add_splice_features(record, bed_path: Path, site_type: str, threshold: float
                     "label": [f"SpliceAI {site_type} (score {score:.6g})"],
                     "note": [f"Predicted {site_type} splice site; OpenSpliceAI score={score:.6g}; prediction threshold={threshold:.6g}"],
                     "source": ["OpenSpliceAI"],
+                    "ApEinfo_fwdcolor": [feature_color],
+                    "ApEinfo_revcolor": [feature_color],
                 },
             ))
             added += 1
@@ -212,7 +218,8 @@ def make_plot(record, donor, acceptor, start, end, cutoff, show_other):
     if category_handles:
         features_ax.legend(handles=category_handles, title="GenBank annotations", loc="upper left",
                            bbox_to_anchor=(1.01, 1), borderaxespad=0, fontsize=8, title_fontsize=9)
-    for values, color, label in ((donor, "#2563eb", "Donor"), (acceptor, "#f28e2b", "Acceptor")):
+    for values, label in ((donor, "Donor"), (acceptor, "Acceptor")):
+        color = SPLICE_SITE_COLORS[label.lower()]
         values = [(x, score) for x, score in values if start <= x <= end and score > cutoff]
         if values:
             xs, ys = zip(*values)
