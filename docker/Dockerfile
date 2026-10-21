@@ -9,14 +9,16 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-# Native OpenMP runtime used by scientific Python packages on Linux.
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends libgomp1 \
-    && rm -rf /var/lib/apt/lists/*
-
 COPY requirements-openspliceai.txt ./
-RUN python -m pip install --upgrade pip \
-    && python -m pip install -r requirements-openspliceai.txt
+
+# mappy is distributed as source and needs a compiler and zlib headers.
+# Remove build tools after installation so the runtime image stays smaller.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends build-essential zlib1g-dev zlib1g libgomp1 \
+    && python -m pip install --upgrade pip \
+    && python -m pip install -r requirements-openspliceai.txt \
+    && apt-get purge -y --auto-remove build-essential zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY app.py ./
 
