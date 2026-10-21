@@ -66,22 +66,27 @@ def read_bed(path: Path):
 
 
 def add_splice_features(record, bed_path: Path, site_type: str, threshold: float) -> int:
-    """Append BED sites above the prediction threshold as GenBank misc_features."""
+    """Append above-threshold splice sites as one-base GenBank misc_features.
+
+    OpenSpliceAI versions used by existing lab outputs can write donor BED
+    rows with chromStart greater than chromEnd. The plot uses chromStart as
+    the predicted position, so use that same coordinate for the annotation.
+    """
     added = 0
     with bed_path.open() as handle:
         for row in csv.reader(handle, delimiter="\t"):
-            if len(row) < 6:
+            if len(row) < 5:
                 continue
             try:
-                start, end = int(row[1]), int(row[2])
+                site_position = int(row[1])
                 score = float(row[4])
             except (ValueError, IndexError):
                 continue
-            if score <= threshold or start < 0 or end <= start or end > len(record.seq):
+            if score <= threshold or site_position < 0 or site_position >= len(record.seq):
                 continue
-            strand = {"+": 1, "-": -1}.get(row[5])
+            strand = {"+": 1, "-": -1}.get(row[5]) if len(row) > 5 else None
             record.features.append(SeqFeature(
-                FeatureLocation(start, end, strand=strand),
+                FeatureLocation(site_position, site_position + 1, strand=strand),
                 type="misc_feature",
                 qualifiers={
                     "label": [f"SpliceAI {site_type} (score {score:.6g})"],
