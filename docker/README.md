@@ -1,6 +1,19 @@
 # Run Anopheles OpenSpliceAI with Docker Desktop
 
-This version uses a prebuilt app image from GitHub Container Registry. Lab members do not need to install Git, Python, Conda, or build the Docker image. Docker Desktop runs OpenSpliceAI inside the container; you interact with it in your web browser.
+This version uses a prebuilt app image published to Docker Hub (and GitHub Container Registry). Lab members do not need to install Git, Python, Conda, or build the Docker image. Docker Desktop runs OpenSpliceAI inside the container; you interact with it in your web browser.
+
+## One-time publishing setup for the repository maintainer
+
+These steps are only needed once by the person maintaining the lab repository. Lab members can skip this section.
+
+1. In Docker Hub, create a **Public** repository named `anopheles-openspliceai-app` under the `pelusitoro` account. The image name will be `pelusitoro/anopheles-openspliceai-app`.
+2. In Docker Hub account settings, create a personal access token with read/write permissions. Copy it somewhere safe; do not put it in the repository or send it in chat.
+3. On GitHub, open the `Anopheles-OpenSpliceAI` repository and go to **Settings → Secrets and variables → Actions**. Select **New repository secret** and add:
+   - `DOCKERHUB_USERNAME` with the Docker Hub username `pelusitoro`.
+   - `DOCKERHUB_TOKEN` with the access token from Docker Hub.
+4. Push the publishing workflow in `.github/workflows/publish-docker-image.yml` to the `main` branch. GitHub Actions will build and push both `linux/amd64` and `linux/arm64` images to Docker Hub and GHCR.
+
+GitHub Actions requires these secrets to publish the image. They are used only by the publishing workflow; the token is not included in the image.
 
 ## What you need
 
@@ -43,11 +56,11 @@ If Docker Desktop or WSL is blocked by your institution's computer settings, ask
    ghcr.io/pelusitoro/anopheles-openspliceai-app:latest
    ```
 
-4. Select the matching image and choose **Pull**. Wait for the download to finish. This only needs to be done once, unless the lab publishes an updated version.
+4. Select `pelusitoro/anopheles-openspliceai-app` and choose **Pull**. Wait for the download to finish. This only needs to be done once, unless the lab publishes an updated version.
 
 ## 4. Start the app and connect the model
 
-1. In Docker Desktop's **Images** view, find `ghcr.io/pelusitoro/anopheles-openspliceai-app` and select **Run**.
+1. In Docker Desktop's **Images** view, find `pelusitoro/anopheles-openspliceai-app` and select **Run**.
 2. Expand **Optional settings** and enter the following values (wording can vary slightly by Docker Desktop version):
 
    | Setting | Value |
