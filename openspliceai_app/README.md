@@ -42,7 +42,7 @@ These steps assume the lab member has the `Anopheles-OpenSpliceAI` repository, w
 
    You do not need to reinstall anything or export the model path each time. The app looks for `model_best.pt` in the repository and nearby standard locations. If it is not found automatically, enter its full path in the sidebar; setting `OPENSPLICEAI_MODEL` is optional.
 
-6. Streamlit will print a local URL, usually `http://localhost:8501`. Open it in a browser. Upload a GenBank `.gb` or `.gbk` file, choose the plot range and settings, then select **Run predictions**. When the run finishes, use the download buttons to save the PNG plot and zipped BED predictions.
+6. Streamlit will print a local URL, usually `http://localhost:8501`. Open it in a browser. Upload a GenBank `.gb` or `.gbk` file, choose the plot range and settings, then select **Run predictions**. When the run finishes, use the download buttons to save the PNG plot, zipped BED predictions, or an annotated GenBank file. The GenBank export preserves the input annotations and adds donor/acceptor `misc_feature` entries with their OpenSpliceAI score, strand, and the prediction threshold. Only sites with scores strictly above the **Prediction threshold** are added; **Minimum score shown in plot** does not affect the export.
 
 To stop the app, return to Terminal and press **Control-C**. The app runs on the Mac that launched it; uploaded files and intermediate predictions are stored temporarily and removed when the prediction run ends.
 
@@ -135,7 +135,11 @@ To close the app, go back to the Ubuntu window and press **Ctrl+C**. The environ
 - Converts it to FASTA and runs `openspliceai predict` with editable flanking size and prediction threshold.
 - Shows donor and acceptor scores with a separate plot cutoff, optionally displaying other annotations.
 - Displays recognized annotations in a pastel palette, packs overlapping features onto additional rows, and places labels above or below the feature blocks in non-overlapping lanes. Promoters are directional arrows, introns are lines, and the category legend is on the right.
-- Supports full-sequence or coordinate-window plots and downloads the PNG and both BED files as a ZIP.
+- Supports full-sequence or coordinate-window plots and downloads the PNG, both BED files as a ZIP, and an annotated GenBank file. The GenBank file preserves input annotations and adds donor/acceptor features with scores only above the prediction threshold.
 - Runs locally; uploaded sequences and predictions are stored in a temporary directory and removed after the run.
 
 The app depends on the model's `openspliceai` installation and its existing prediction output format. This first draft is intended for local lab use; it does not yet include multi-record plotting, saved run history, or deployment/authentication.
+
+### OpenSpliceAI paper
+
+Chao K-H, Mao A, Liu A, Pertea M, Salzberg SL. “OpenSpliceAI provides an efficient modular implementation of SpliceAI enabling easy retraining across nonhuman species.” *eLife* 14:RP107454 (2025). [https://doi.org/10.7554/eLife.107454.3](https://doi.org/10.7554/eLife.107454.3)

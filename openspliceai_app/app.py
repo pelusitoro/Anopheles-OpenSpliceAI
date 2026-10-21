@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import copy
 import io
 import os
 import shutil
@@ -10,6 +11,7 @@ import subprocess
 import tempfile
 import zipfile
 from pathlib import Path
+from Bio.SeqFeature import FeatureLocation, SeqFeature
 
 import matplotlib.pyplot as plt
 import streamlit as st
@@ -20,7 +22,7 @@ from matplotlib.lines import Line2D
 
 st.set_page_config(page_title="Anopheles SpliceAI", page_icon="🧬", layout="wide")
 st.title("Anopheles OpenSpliceAI")
-st.write("Upload a GenBank file, choose prediction and plot settings, and download the plot and BED predictions.")
+st.write("Upload a GenBank file, choose prediction and plot settings, and download the plot, BED predictions, or an annotated GenBank file.")
 
 def find_default_model() -> str:
     configured = os.environ.get("OPENSPLICEAI_MODEL")
@@ -61,6 +63,40 @@ def read_bed(path: Path):
             except (ValueError, IndexError):
                 continue
     return results
+
+
+def add_splice_features(record, bed_path: Path, site_type: str, threshold: float) -> int:
+    """Append BED sites above the prediction threshold as GenBank misc_features."""
+    added = 0
+    with bed_path.open() as handle:
+        for row in csv.reader(handle, delimiter="\t"):
+            if len(row) < 6:
+                continue
+            try:
+                start, end = int(row[1]), int(row[2])
+                score = float(row[4])
+            except (ValueError, IndexError):
+                continue
+            if score <= threshold or start < 0 or end <= start or end > len(record.seq):
+                continue
+            strand = {"+": 1, "-": -1}.get(row[5])
+            record.features.append(SeqFeature(
+                FeatureLocation(start, end, strand=strand),
+                type="misc_feature",
+                qualifiers={
+                    "label": [f"SpliceAI {site_type} (score {score:.6g})"],
+                    "note": [f"Predicted {site_type} splice site; OpenSpliceAI score={score:.6g}; prediction threshold={threshold:.6g}"],
+                    "source": ["OpenSpliceAI"],
+                },
+            ))
+            added += 1
+    return added
+
+
+def genbank_bytes(record) -> bytes:
+    output = io.StringIO()
+    SeqIO.write(record, output, "genbank")
+    return output.getvalue().encode("utf-8")
 
 
 ANNOTATION_COLORS = {
@@ -246,9 +282,21 @@ if uploaded:
                                 archive.write(beds[0][0], "donor_predictions.bed")
                                 archive.write(beds[1][0], "acceptor_predictions.bed")
                             st.download_button("Download prediction BED files (ZIP)", bundle.getvalue(), f"{Path(uploaded.name).stem}_predictions.zip", "application/zip")
+                            annotated_record = copy.deepcopy(record)
+                            donor_count = add_splice_features(annotated_record, beds[0][0], "donor", threshold)
+                            acceptor_count = add_splice_features(annotated_record, beds[1][0], "acceptor", threshold)
+                            st.caption(f"Annotated GenBank export: {donor_count + acceptor_count:,} splice sites above threshold {threshold:g} ({donor_count:,} donors, {acceptor_count:,} acceptors).")
+                            st.download_button("Download annotated GenBank", genbank_bytes(annotated_record), f"{Path(uploaded.name).stem}_spliceai_annotated.gb", "text/plain")
                 except OSError as exc:
                     st.error(f"Could not start OpenSpliceAI: {exc}")
                 finally:
                     work.cleanup()
 else:
     st.info("Upload a GenBank (.gb/.gbk) file to get started.")
+
+st.divider()
+st.caption(
+    'OpenSpliceAI method: Chao K-H, Mao A, Liu A, Pertea M, Salzberg SL. '
+    '“OpenSpliceAI provides an efficient modular implementation of SpliceAI enabling easy retraining across nonhuman species.” '
+    '[eLife 14:RP107454 (2025)](https://doi.org/10.7554/eLife.107454.3).'
+)

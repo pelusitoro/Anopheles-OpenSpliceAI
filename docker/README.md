@@ -81,9 +81,13 @@ If Docker Desktop or WSL is blocked by your institution's computer settings, ask
    Mark the model mount read-only if Docker Desktop provides that option.
 
 3. Select **Run**. Docker Desktop starts the container and shows its logs.
-4. Open [http://localhost:8501](http://localhost:8501) in your web browser. Upload a GenBank `.gb` or `.gbk` file, adjust the prediction and plot settings, and click **Run predictions**. Download the plot and BED files from the app when the run finishes.
+4. Open [http://localhost:8501](http://localhost:8501) in your web browser. Upload a GenBank `.gb` or `.gbk` file, adjust the prediction and plot settings, and click **Run predictions**. Download the plot, BED files, or annotated GenBank file from the app when the run finishes. The annotated GenBank file preserves input annotations and adds donor/acceptor features with scores strictly above the prediction threshold; the plot score cutoff does not affect the export.
 
 Docker's official [Images view guide](https://docs.docker.com/desktop/use-desktop/images/) explains how to pull and run an image and configure port, volume, and environment settings.
+
+## OpenSpliceAI paper
+
+Chao K-H, Mao A, Liu A, Pertea M, Salzberg SL. “OpenSpliceAI provides an efficient modular implementation of SpliceAI enabling easy retraining across nonhuman species.” *eLife* 14:RP107454 (2025). [https://doi.org/10.7554/eLife.107454.3](https://doi.org/10.7554/eLife.107454.3)
 
 ## Next time
 
