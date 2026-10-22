@@ -5,11 +5,9 @@ This repository contains a Jupyter notebook (`11_access_openspliceAI.ipynb`) alo
 
 ## Graphical app (recommended for lab use)
 
-The `openspliceai_app/` folder contains a no-code interface for uploading a GenBank file, running the trained model, plotting splice-site predictions with feature annotations, and downloading the plot and BED results.
+The `docker/` folder contains the Docker Desktop app. The image includes the trained `AgamI_model_best.pt` model and supports both GenBank plotting and FASTA/pasted-sequence BED predictions. Lab members do not need to install Python, Conda, OpenSpliceAI, or the model separately.
 
-Start with the [app setup guide](openspliceai_app/README.md). It includes beginner-friendly installation and launch steps for macOS and Windows (using WSL2). The app runs locally on the user's computer, and the trained `AgamI_model_best.pt` file is included in this repository.
-
-The app is intended to make the workflow easier without replacing the notebook. The notebook instructions below are retained for users who prefer that workflow.
+Follow the beginner-friendly [Docker Desktop setup and usage guide](docker/README.md) for Mac and Windows. The notebook instructions below remain available for users who prefer that workflow.
 
 ---
 
