@@ -68,10 +68,6 @@ If Docker Desktop or WSL is blocked by your institution's computer settings, ask
 
 Docker's official [Images view guide](https://docs.docker.com/desktop/use-desktop/images/) explains how to pull and run an image and configure its port.
 
-## OpenSpliceAI paper
-
-Chao K-H, Mao A, Liu A, Pertea M, Salzberg SL. “OpenSpliceAI provides an efficient modular implementation of SpliceAI enabling easy retraining across nonhuman species.” *eLife* 14:RP107454 (2025). [https://doi.org/10.7554/eLife.107454.3](https://doi.org/10.7554/eLife.107454.3)
-
 ## Next time
 
 1. Open Docker Desktop.
@@ -88,3 +84,7 @@ To stop the app, select **Stop** for `openspliceai-lab-app` in the **Containers*
 - **The image cannot be found:** check the image name above and ensure Docker Desktop has internet access. If the package is private, the lab maintainer must make it public or grant you access.
 
 The app runs predictions on CPU in this draft, so long sequences may take a while. Uploaded GenBank records and intermediate prediction files are temporary and removed after a prediction run.
+
+## OpenSpliceAI paper
+
+Chao K-H, Mao A, Liu A, Pertea M, Salzberg SL. “OpenSpliceAI provides an efficient modular implementation of SpliceAI enabling easy retraining across nonhuman species.” *eLife* 14:RP107454 (2025). [https://doi.org/10.7554/eLife.107454.3](https://doi.org/10.7554/eLife.107454.3)
