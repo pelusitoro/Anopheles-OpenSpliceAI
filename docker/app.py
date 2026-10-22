@@ -27,13 +27,16 @@ st.write("Upload a GenBank file, choose prediction and plot settings, and downlo
 def find_default_model() -> str:
     configured = os.environ.get("OPENSPLICEAI_MODEL")
     candidates = [Path(configured).expanduser()] if configured else []
-    candidates.extend([Path.cwd() / "model_best.pt", Path(__file__).resolve().parent / "model_best.pt"])
+    model_names = ("AgamI_model_best.pt", "model_best.pt")
+    candidates.extend(Path.cwd() / name for name in model_names)
+    candidates.extend(Path(__file__).resolve().parent / name for name in model_names)
     for parent in Path(__file__).resolve().parents:
-        candidates.extend([parent / "model_best.pt", parent / "Anopheles-OpenSpliceAI" / "model_best.pt"])
+        candidates.extend(parent / name for name in model_names)
+        candidates.extend(parent / "Anopheles-OpenSpliceAI" / name for name in model_names)
     for candidate in candidates:
         if candidate.is_file():
             return str(candidate)
-    return configured or "model_best.pt"
+    return configured or "AgamI_model_best.pt"
 
 
 default_model = find_default_model()

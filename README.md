@@ -1,13 +1,13 @@
 # Anopheles-OpenSpliceAI
 Jupyter notebook for accessible use of OpenSpliceAI model trained with A. gambiae Ifakara reference genome. The notebook is designed to take a `gbk` file (easily exported from Benchling) from where the sequence and annotations are extracted for prediction and plotting of splice donor and acceptor sites.
 
-This repository contains a Jupyter notebook (`11_access_openspliceAI.ipynb`) along with a Conda environment file (`environment.yml`) to reproduce the analysis, as well as the pretrained model required for the prediction of splice sites (`model_best.pt`)
+This repository contains a Jupyter notebook (`11_access_openspliceAI.ipynb`) along with a Conda environment file (`environment.yml`) to reproduce the analysis, as well as the pretrained model required for the prediction of splice sites (`AgamI_model_best.pt`)
 
 ## Graphical app (recommended for lab use)
 
 The `openspliceai_app/` folder contains a no-code interface for uploading a GenBank file, running the trained model, plotting splice-site predictions with feature annotations, and downloading the plot and BED results.
 
-Start with the [app setup guide](openspliceai_app/README.md). It includes beginner-friendly installation and launch steps for macOS and Windows (using WSL2). The app runs locally on the user's computer, and the trained `model_best.pt` file is included in this repository.
+Start with the [app setup guide](openspliceai_app/README.md). It includes beginner-friendly installation and launch steps for macOS and Windows (using WSL2). The app runs locally on the user's computer, and the trained `AgamI_model_best.pt` file is included in this repository.
 
 The app is intended to make the workflow easier without replacing the notebook. The notebook instructions below are retained for users who prefer that workflow.
 
@@ -112,7 +112,7 @@ from Bio import SeqIO
 import os
 
 os.environ["WORKING_DIR"] = "/rds/general/user/prelucio/projects/tmstorage/live/openspliceAI/openspliceai" #Working directory
-os.environ["MODEL_DIR"] = "/home/prelucio/Pablo/openspliceAI/model_best.pt" #PATH to model_best.pt
+os.environ["MODEL_DIR"] = "/home/prelucio/Pablo/openspliceAI/AgamI_model_best.pt" #PATH to AgamI_model_best.pt
 
 os.environ["INPUT_FILE"] = "/home/prelucio/Pablo/openspliceAI/QFS_lines/QFS5_REV.gbk" #gbk file with sequence to be analysed and annotations. Can be exported from benchling
 os.environ["OUTPUT_DIR"] = "/home/prelucio/Pablo/openspliceAI/QFS_results/QFS5_REV" #Directory where output files will be saved

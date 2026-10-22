@@ -6,7 +6,7 @@ The pinned `requirements-openspliceai.txt` was assembled from the installed `ope
 
 ## Install and run on macOS
 
-These steps assume the lab member has the `Anopheles-OpenSpliceAI` repository, which includes `environment.yml` and `model_best.pt`. Keep the `openspliceai_app` folder inside that repository (for example, as `Anopheles-OpenSpliceAI/openspliceai_app`) so the app can find the model automatically.
+These steps assume the lab member has the `Anopheles-OpenSpliceAI` repository, which includes `environment.yml` and `AgamI_model_best.pt`. Keep the `openspliceai_app` folder inside that repository (for example, as `Anopheles-OpenSpliceAI/openspliceai_app`) so the app can find the model automatically.
 
 1. Install Miniforge (recommended for Apple silicon and Intel Macs) or Miniconda, then open Terminal. If needed, install Git with Apple's command line tools by running `xcode-select --install`.
 2. Clone the repository, or open Terminal and change into an existing checkout:
@@ -40,7 +40,7 @@ These steps assume the lab member has the `Anopheles-OpenSpliceAI` repository, w
    streamlit run app.py
    ```
 
-   You do not need to reinstall anything or export the model path each time. The app looks for `model_best.pt` in the repository and nearby standard locations. If it is not found automatically, enter its full path in the sidebar; setting `OPENSPLICEAI_MODEL` is optional.
+   You do not need to reinstall anything or export the model path each time. The app looks for `AgamI_model_best.pt` in the repository and nearby standard locations. If it is not found automatically, enter its full path in the sidebar; setting `OPENSPLICEAI_MODEL` is optional.
 
 6. Streamlit will print a local URL, usually `http://localhost:8501`. Open it in a browser. Upload a GenBank `.gb` or `.gbk` file, choose the plot range and settings, then select **Run predictions**. When the run finishes, use the download buttons to save the PNG plot, zipped BED predictions, or an annotated GenBank file. The GenBank export preserves the input annotations and adds one-base donor/acceptor `misc_feature` entries at the plotted BED position, with their OpenSpliceAI score and threshold. Donors are forward-strand blue features; acceptors are reverse-strand yellow features. Only sites with scores strictly above the **Prediction threshold** are added; **Minimum score shown in plot** does not affect the export. Older OpenSpliceAI output may have reversed start/end coordinates for donors; the export handles these rows using the plotted start coordinate.
 
@@ -50,7 +50,7 @@ To stop the app, return to Terminal and press **Control-C**. The app runs on the
 
 - If Terminal says `conda: command not found`, finish the Miniforge/Miniconda shell initialization and open a new Terminal window.
 - If the app says it cannot find `openspliceai`, activate the `openspliceai` environment in the same Terminal window before launching Streamlit.
-- If it cannot find the model, enter the full path to the repository's `model_best.pt` in the sidebar. Keep the app folder inside the repository for automatic model discovery.
+- If it cannot find the model, enter the full path to the repository's `AgamI_model_best.pt` in the sidebar. Keep the app folder inside the repository for automatic model discovery.
 - If environment creation fails while installing PyTorch, first update Conda (`conda update -n base conda`) and retry. The packages specified in `environment.yml` are the intended versions for this model.
 
 ## Linux
@@ -87,7 +87,7 @@ The simplest supported Windows setup is to run the app inside Ubuntu on WSL2. WS
    git clone https://github.com/pelusitoro/Anopheles-OpenSpliceAI.git
    ```
 
-   This repository includes the trained `model_best.pt` model. The app files (`app.py`, `requirements-windows-wsl.txt`, and `README.md`) should be placed in a folder named `openspliceai_app` inside the newly downloaded `Anopheles-OpenSpliceAI` folder. If you received these app files separately, copy the `openspliceai_app` folder into the repository using Windows File Explorer. To open the right folder in File Explorer, run these commands in Ubuntu:
+   This repository includes the trained `AgamI_model_best.pt` model. The app files (`app.py`, `requirements-windows-wsl.txt`, and `README.md`) should be placed in a folder named `openspliceai_app` inside the newly downloaded `Anopheles-OpenSpliceAI` folder. If you received these app files separately, copy the `openspliceai_app` folder into the repository using Windows File Explorer. To open the right folder in File Explorer, run these commands in Ubuntu:
 
    ```bash
    cd ~/Anopheles-OpenSpliceAI
@@ -117,7 +117,7 @@ The simplest supported Windows setup is to run the app inside Ubuntu on WSL2. WS
    streamlit run openspliceai_app/app.py
    ```
 
-3. Ubuntu will show a local address, usually `http://localhost:8501`. Open that address in your normal Windows web browser. The app should find `model_best.pt` automatically because the app folder is inside the repository. If it does not, enter the model's path in the sidebar. In WSL, it will look similar to `/home/your-linux-username/Anopheles-OpenSpliceAI/model_best.pt`.
+3. Ubuntu will show a local address, usually `http://localhost:8501`. Open that address in your normal Windows web browser. The app should find `AgamI_model_best.pt` automatically because the app folder is inside the repository. If it does not, enter the model's path in the sidebar. In WSL, it will look similar to `/home/your-linux-username/Anopheles-OpenSpliceAI/AgamI_model_best.pt`.
 4. Upload a GenBank `.gb` or `.gbk` file, choose the plot settings, and click **Run predictions**. Use the download buttons to save the plot and BED files.
 
 To close the app, go back to the Ubuntu window and press **Ctrl+C**. The environment installation is one time; each later use only needs the three launch commands above. Keep the repository and model in the Ubuntu home folder for better performance. The browser's upload and download buttons work from Windows as usual.

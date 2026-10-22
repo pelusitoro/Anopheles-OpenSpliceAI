@@ -11,7 +11,7 @@ These steps are only needed once by the person maintaining the lab repository. L
 3. On GitHub, open the `Anopheles-OpenSpliceAI` repository and go to **Settings → Secrets and variables → Actions**. Select **New repository secret** and add:
    - `DOCKERHUB_USERNAME` with the Docker Hub username `pelusitoro`.
    - `DOCKERHUB_TOKEN` with the access token from Docker Hub.
-4. Push the publishing workflow in `.github/workflows/publish-docker-image.yml` to the `main` branch. GitHub Actions will build and push both `linux/amd64` and `linux/arm64` images to Docker Hub and GHCR. The build includes the repository's `model_best.pt`; a change to that file automatically triggers a new image build.
+4. Push the publishing workflow in `.github/workflows/publish-docker-image.yml` to the `main` branch. GitHub Actions will build and push both `linux/amd64` and `linux/arm64` images to Docker Hub and GHCR. The build includes the repository's `AgamI_model_best.pt`; a change to that file automatically triggers a new image build.
 
 GitHub Actions requires these secrets to publish the image. They are used only by the publishing workflow; the token is not included in the image.
 
@@ -20,7 +20,7 @@ GitHub Actions requires these secrets to publish the image. They are used only b
 - Docker Desktop for Mac or Windows.
 - An internet connection for the first image download.
 
-The trained `model_best.pt` model is included inside the app image. You do not need to download or mount the model separately.
+The trained `AgamI_model_best.pt` model is included inside the app image. You do not need to download or mount the model separately.
 
 ## 1. Install and open Docker Desktop
 
@@ -82,7 +82,7 @@ To stop the app, select **Stop** for `openspliceai-lab-app` in the **Containers*
 
 ## Troubleshooting
 
-- **Docker cannot find the model:** make sure you have pulled the latest `pelusitoro/anopheles-openspliceai-app` image, which includes `model_best.pt`.
+- **Docker cannot find the model:** make sure you have pulled the latest `pelusitoro/anopheles-openspliceai-app` image, which includes `AgamI_model_best.pt`.
 - **Port 8501 is busy:** use host port `8502` while leaving container port `8501`, then open `http://localhost:8502`.
 - **The app page does not load:** confirm the container is running in Docker Desktop, wait a minute for startup, and reload the page.
 - **The image cannot be found:** check the image name above and ensure Docker Desktop has internet access. If the package is private, the lab maintainer must make it public or grant you access.

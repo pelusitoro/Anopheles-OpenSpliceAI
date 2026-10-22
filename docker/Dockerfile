@@ -21,9 +21,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY docker/app.py ./
-COPY model_best.pt /models/model_best.pt
+COPY AgamI_model_best.pt /models/AgamI_model_best.pt
 
-ENV OPENSPLICEAI_MODEL=/models/model_best.pt
+ENV OPENSPLICEAI_MODEL=/models/AgamI_model_best.pt
 
 EXPOSE 8501
 CMD ["streamlit", "run", "app.py"]

@@ -6,7 +6,7 @@ on:
     paths:
       - "docker/**"
       - ".dockerignore"
-      - "model_best.pt"
+      - "AgamI_model_best.pt"
       - ".github/workflows/publish-docker-image.yml"
   workflow_dispatch:
 
