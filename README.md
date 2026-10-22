@@ -76,7 +76,7 @@ Docker's official [Images view guide](https://docs.docker.com/desktop/use-deskto
 
 To stop the app, select **Stop** for `openspliceai-lab-app` in the **Containers** view. The app image remains on your computer. You do not need to download it again each time. Docker's [Containers view guide](https://docs.docker.com/desktop/use-desktop/container/) describes the controls.
 
-## Predict and plot from a GenBank file
+## 4. Predict and plot from a GenBank file
 In the Docker app, open the GenBank: plot and annotations tab and upload a GenBank file (.gb, .gbk, or .gbff). Choose whether to plot the full sequence or a coordinate range, adjust the prediction settings if needed, and click Run predictions.
 When the run finishes, the app displays splice-site predictions over the sequence annotations. You can download the plot as a PNG, the donor and acceptor predictions as BED files in a ZIP, or an annotated GenBank file.
 The plot displays these annotation categories when they are present in the GenBank file:
@@ -87,8 +87,10 @@ The plot displays these annotation categories when they are present in the GenBa
 - exon
 - intron — shown as a line
 - other — optional category for anything else you want to visualise that does not belong in any other category; turn on Show other annotations in the prediction settings
-Each category has its own color. Features that overlap are arranged on additional rows, and labels are placed above or below the feature shapes. Annotations that do not match one of these categories are not plotted.
-Categories are simply to facilitate making the plots and do not affect the outcome of the prediction. 
+
+Each category has its own color. Features that overlap are arranged on additional rows, and labels are placed above or below the feature shapes.
+Annotations that do not match one of these categories are not plotted.
+**Categories are simply to facilitate making the plots and do not affect the outcome of the prediction.**
 
 ## Predict from a FASTA file or pasted sequence
 In the Docker app, open FASTA or paste: BED files. Choose Upload FASTA to provide a .fa, .fasta, .fna, or .fas file, or choose Paste sequence to enter DNA directly. You can paste either a plain sequence or FASTA-formatted text. Multiple FASTA records are supported. Adjust the prediction settings if needed, then click Run predictions and get BED files.
