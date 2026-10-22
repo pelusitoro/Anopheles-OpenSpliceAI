@@ -76,6 +76,33 @@ Docker's official [Images view guide](https://docs.docker.com/desktop/use-deskto
 
 To stop the app, select **Stop** for `openspliceai-lab-app` in the **Containers** view. The app image remains on your computer. You do not need to download it again each time. Docker's [Containers view guide](https://docs.docker.com/desktop/use-desktop/container/) describes the controls.
 
+## Predict and plot from a GenBank file
+In the Docker app, open the GenBank: plot and annotations tab and upload a GenBank file (.gb, .gbk, or .gbff). Choose whether to plot the full sequence or a coordinate range, adjust the prediction settings if needed, and click Run predictions.
+When the run finishes, the app displays splice-site predictions over the sequence annotations. You can download the plot as a PNG, the donor and acceptor predictions as BED files in a ZIP, or an annotated GenBank file.
+The plot displays these annotation categories when they are present in the GenBank file:
+- promoter — a directional arrow based on the feature’s strand
+- terminator
+- 5′UTR and 3′UTR
+- CDS
+- exon
+- intron — shown as a line
+- other — optional category for anything else you want to visualise that does not belong in any other category; turn on Show other annotations in the prediction settings
+Each category has its own color. Features that overlap are arranged on additional rows, and labels are placed above or below the feature shapes. Annotations that do not match one of these categories are not plotted.
+Categories are simply to facilitate making the plots and do not affect the outcome of the prediction. 
+
+## Predict from a FASTA file or pasted sequence
+In the Docker app, open FASTA or paste: BED files. Choose Upload FASTA to provide a .fa, .fasta, .fna, or .fas file, or choose Paste sequence to enter DNA directly. You can paste either a plain sequence or FASTA-formatted text. Multiple FASTA records are supported. Adjust the prediction settings if needed, then click Run predictions and get BED files.
+There is no strict minimum sequence length. For a region of interest, aim to include about 10,000 bases of flanking sequence total—roughly 5,000 on each side—when possible. Shorter sequences still run, but predictions near sequence ends have less real context.
+Understanding the outputs
+
+**For FASTA or pasted-sequence predictions, the app provides:**
+- A donor BED file with predicted donor splice sites.
+- An acceptor BED file with predicted acceptor splice sites.
+- A ZIP file containing both BED files.
+The BED files contain genomic-style coordinates relative to each input sequence, along with the prediction score. You can use them in genome browsers or other compatible tools to view the predicted sites. The app does not create a plot in this workflow.
+
+**For GenBank predictions**, the app also displays a plot and offers a PNG, BED files in a ZIP, and an annotated GenBank file. In the GenBank annotation export, donor sites are forward-strand blue features and acceptor sites are reverse-strand yellow features. Only sites with scores above the prediction threshold are added.
+
 ## Troubleshooting
 
 - **Docker cannot find the model:** make sure you have pulled the latest `pelusitoro/anopheles-openspliceai-app` image, which includes `AgamI_model_best.pt`.
