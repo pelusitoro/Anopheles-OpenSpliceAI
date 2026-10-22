@@ -1,0 +1,4 @@
+**
+!model_best.pt
+!docker/
+!docker/**

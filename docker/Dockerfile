@@ -9,7 +9,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-COPY requirements-openspliceai.txt ./
+COPY docker/requirements-openspliceai.txt ./
 
 # mappy is distributed as source and needs a compiler and zlib headers.
 # Remove build tools after installation so the runtime image stays smaller.
@@ -20,7 +20,10 @@ RUN apt-get update \
     && apt-get purge -y --auto-remove build-essential zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-COPY app.py ./
+COPY docker/app.py ./
+COPY model_best.pt /models/model_best.pt
+
+ENV OPENSPLICEAI_MODEL=/models/model_best.pt
 
 EXPOSE 8501
 CMD ["streamlit", "run", "app.py"]
